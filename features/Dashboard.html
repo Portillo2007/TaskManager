@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TaskManager - Dashboard</title>
+  <link rel="stylesheet" href="../css/dashboard.css">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+  <input type="checkbox" id="toggle-add" class="modal-checkbox">
+  <input type="checkbox" id="toggle-edit" class="modal-checkbox">
+  <input type="checkbox" id="toggle-delete" class="modal-checkbox">
+
+  <div class="dashboard-container">
+    <aside class="sidebar">
+      <div class="sidebar-brand">
+        <i class="ph ph-check-square-offset"></i>
+        <h2>TaskManager</h2>
+      </div>
+      <nav class="sidebar-menu">
+        <a href="#" class="active"><i class="ph ph-chart-pie"></i> Dashboard</a>
+        <a href="#"><i class="ph ph-users"></i> Usuarios</a>
+        <a href="#"><i class="ph ph-gear"></i> Configuración</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="page-title">
+          <h1>Dashboard</h1>
+        </div>
+        <div class="user-profile">
+          <span>Juan Cruz</span>
+          <div class="avatar"></div>
+        </div>
+      </header>
+
+      <div class="dashboard-body">
+        
+        <section class="table-container">
+          <div class="table-header">
+            <h2>Gestión de Dispositivos</h2>
+            <div class="table-actions">
+              <div class="search-wrapper">
+                <i class="ph ph-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar..." class="search-input">
+              </div>
+              
+              <label for="toggle-add" class="btn btn-primary">
+                <i class="ph ph-plus"></i> Nuevo Registro
+              </label>
+            </div>
+          </div>
+
+          <div class="table-responsive">
+            <table class="admin-table">
+              <thead>
+                <tr>
+                  <th>ID</th>
+                  <th>Nombre del Dispositivo</th>
+                  <th>Fecha de Alta</th>
+                  <th>Estado</th>
+                  <th class="text-center">Acciones</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>#001</td>
+                  <td><strong>Sensor Prototipo A</strong></td>
+                  <td>08 Jun 2026</td>
+                  <td><span class="badge badge-success">Activo</span></td>
+                  <td class="text-center">
+                    <label for="toggle-edit" class="btn-action edit" title="Editar"><i class="ph ph-pencil-simple"></i></label>
+                    <label for="toggle-delete" class="btn-action delete" title="Eliminar"><i class="ph ph-trash"></i></label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>#002</td>
+                  <td><strong>Módulo IoT Central</strong></td>
+                  <td>07 Jun 2026</td>
+                  <td><span class="badge badge-warning">Pendiente</span></td>
+                  <td class="text-center">
+                    <label for="toggle-edit" class="btn-action edit" title="Editar"><i class="ph ph-pencil-simple"></i></label>
+                    <label for="toggle-delete" class="btn-action delete" title="Eliminar"><i class="ph ph-trash"></i></label>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div class="modal-overlay modal-add-container">
+    <div class="modal-card">
+      <div class="modal-card-header">
+        <h3>Agregar Nuevo Registro</h3>
+        <label for="toggle-add" class="close-modal-btn"><i class="ph ph-x"></i></label>
+      </div>
+      <form class="modal-form" action="#" method="POST">
+        <div class="form-group">
+          <label for="addName">Nombre del Dispositivo</label>
+          <input type="text" id="addName" placeholder="Ej. Sensor Temperatura" required minlength="3">
+          <span class="error-message">El nombre es obligatorio (mínimo 3 caracteres).</span>
+        </div>
+        <div class="form-group">
+          <label for="addStatus">Estado Inicial</label>
+          <select id="addStatus" required>
+            <option value="" disabled selected>Selecciona un estado</option>
+            <option value="activo">Activo</option>
+            <option value="pendiente">Pendiente</option>
+          </select>
+          <span class="error-message">Debes seleccionar un estado.</span>
+        </div>
+        <div class="modal-card-actions">
+          <label for="toggle-add" class="btn btn-secondary">Cancelar</label>
+          <button type="submit" class="btn btn-primary">Guardar Registro</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay modal-edit-container">
+    <div class="modal-card">
+      <div class="modal-card-header">
+        <h3>Modificar Dispositivo</h3>
+        <label for="toggle-edit" class="close-modal-btn"><i class="ph ph-x"></i></label>
+      </div>
+      <form class="modal-form" action="#" method="POST">
+        <div class="form-group">
+          <label for="editName">Nombre del Dispositivo</label>
+          <input type="text" id="editName" value="Sensor Prototipo A" required minlength="3">
+          <span class="error-message">El nombre no puede quedar vacío.</span>
+        </div>
+        <div class="form-group">
+          <label for="editStatus">Estado Actual</label>
+          <select id="editStatus" required>
+            <option value="activo" selected>Activo</option>
+            <option value="pendiente">Pendiente</option>
+          </select>
+        </div>
+        <div class="modal-card-actions">
+          <label for="toggle-edit" class="btn btn-secondary">Cancelar</label>
+          <button type="submit" class="btn btn-primary">Actualizar Cambios</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay modal-delete-container">
+    <div class="modal-card alert-card">
+      <div class="modal-alert-body">
+        <i class="ph ph-warning-circle alert-icon"></i>
+        <h3>¿Eliminar este dispositivo?</h3>
+        <p>Esta acción no se puede deshacer. El registro se quitará permanentemente del sistema.</p>
+      </div>
+      <div class="modal-card-actions text-center-actions">
+        <label for="toggle-delete" class="btn btn-secondary">No, Cancelar</label>
+        <form action="#" method="POST" style="display:inline;">
+          <button type="submit" class="btn btn-danger">Sí, Eliminar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

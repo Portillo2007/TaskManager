@@ -1,0 +1,376 @@
+/* ==========================================================================
+   Estilos Globales y Variables
+   ========================================================================== */
+:root {
+    --bg-primary: #0f172a;       /* Slate 900 - Fondo oscuro profundo */
+    --bg-surface: #1e293b;       /* Slate 800 - Superficie del contenedor */
+    --bg-input: #334155;         /* Slate 700 - Campos de entrada */
+    --text-main: #f8fafc;        /* Slate 50 */
+    --text-muted: #94a3b8;       /* Slate 400 */
+    --accent: #3b82f6;           /* Azul moderno y profesional */
+    --accent-hover: #2563eb;     /* Azul interactivo para hovers */
+    --border-color: #475569;     /* Slate 600 */
+    --font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    --radius: 12px;
+    --transition: all 0.25s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+}
+
+/* ==========================================================================
+   Contenedor Principal (Split Layout)
+   ========================================================================== */
+.login-container {
+    display: flex;
+    width: 100%;
+    max-width: 1100px;
+    min-height: 680px;
+    background-color: var(--bg-surface);
+    margin: 20px;
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Panel Izquierdo - Branding */
+.brand-side {
+    flex: 1;
+    background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    border-right: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Detalle sutil decorativo de fondo */
+.brand-side::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(59,130,246,0.15) 0%, rgba(0,0,0,0) 70%);
+    border-radius: 50%;
+}
+
+.brand-wrapper {
+    max-width: 420px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+    margin-bottom: 60px;
+}
+
+.logo i {
+    font-size: 28px;
+    color: var(--accent);
+}
+
+.brand-title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.brand-subtitle {
+    font-size: 15px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.brand-footer {
+    font-size: 13px;
+    color: rgba(148, 163, 184, 0.6);
+}
+
+/* Panel Derecho - Formulario */
+.form-side {
+    flex: 1.1;
+    background-color: var(--bg-surface);
+    padding: 60px 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-header {
+    margin-bottom: 36px;
+}
+
+.form-header h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #ffffff;
+}
+
+.form-header p {
+    color: var(--text-muted);
+    font-size: 15px;
+}
+
+/* ==========================================================================
+   Campos de Formulario e Inputs
+   ========================================================================== */
+.login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input-group label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #e2e8f0;
+}
+
+.label-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.forgot-link {
+    font-size: 13px;
+    color: var(--accent);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.forgot-link:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+.input-field {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-field i {
+    position: absolute;
+    left: 16px;
+    color: var(--text-muted);
+    font-size: 20px;
+    transition: var(--transition);
+    pointer-events: none;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 14px 16px 14px 48px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-main);
+    font-size: 15px;
+    outline: none;
+    transition: var(--transition);
+}
+
+.input-field input::placeholder {
+    color: rgba(148, 163, 184, 0.5);
+}
+
+/* Estados Focus con transiciones suaves */
+.input-field input:focus {
+    border-color: var(--accent);
+    background-color: rgba(51, 65, 85, 0.6);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.input-field input:focus + i {
+    color: var(--accent);
+}
+
+/* Custom Checkbox (Recordar Sesión) */
+.form-options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text-muted);
+    user-select: none;
+}
+
+.remember-me input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.remember-me:hover input ~ .checkmark {
+    border-color: var(--accent);
+}
+
+.remember-me input:checked ~ .checkmark {
+    background-color: var(--accent);
+    border-color: var(--accent);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.remember-me input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.remember-me .checkmark:after {
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* ==========================================================================
+   Botón de Envío (Submit)
+   ========================================================================== */
+.btn-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--accent);
+    color: #ffffff;
+    border: none;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    margin-top: 8px;
+}
+
+.btn-submit i {
+    font-size: 18px;
+    transition: var(--transition);
+}
+
+.btn-submit:hover {
+    background-color: var(--accent-hover);
+}
+
+/* Efecto intuitivo de flecha moviéndose al hacer hover */
+.btn-submit:hover i {
+    transform: translateX(4px);
+}
+
+.btn-submit:active {
+    transform: scale(0.98);
+}
+
+.form-footer {
+    margin-top: 32px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.form-footer a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.form-footer a:hover {
+    color: var(--accent-hover);
+    text-decoration: underline;
+}
+
+/* ==========================================================================
+   Media Queries - Diseño Adaptable (Responsive)
+   ========================================================================== */
+@media (max-width: 900px) {
+    .brand-side {
+        display: none; /* Oculta el panel izquierdo en pantallas medianas/chicas */
+    }
+    
+    .form-side {
+        padding: 60px 40px;
+    }
+    
+    .login-container {
+        max-width: 500px;
+        min-height: auto;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-side {
+        padding: 40px 24px;
+    }
+    
+    .form-header h2 {
+        font-size: 24px;
+    }
+}
